@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>❤️ Ultimate Love Calculator</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #ff6b81;
+            --light: #fff5f5;
+            --dark: #2f3542;
+            --shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .calculator {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            padding: 25px;
+            text-align: center;
+            background: var(--light);
+        }
+
+        .heart {
+            font-size: 48px;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: pulse 1.8s infinite;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form {
+            padding: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #ff3344;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            padding: 25px;
+            background: var(--light);
+            text-align: center;
+            display: none;
+        }
+
+        .couple-names {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .percentage {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+            line-height: 1;
+        }
+
+        .progress-container {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            width: 0;
+            transition: width 1s ease-out;
+        }
+
+        .message {
+            font-size: 16px;
+            margin-top: 15px;
+            color: #555;
+        }
+
+        .footer {
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                border-radius: 12px;
+            }
+            
+            .header, .form, .result {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .percentage {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="header">
+            <div class="heart">❤️</div>
+            <h1>Love Calculator</h1>
+            <div class="subtitle">Discover your true love compatibility</div>
+        </div>
+        
+        <div class="form">
+            <div class="input-group">
+                <label for="name1">Your Name</label>
+                <input type="text" id="name1" placeholder="Enter your name" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label for="name2">Partner's Name</label>
+                <input type="text" id="name2" placeholder="Enter partner's name" autocomplete="off">
+            </div>
+            
+            <button id="calculate-btn">Calculate Love Score</button>
+        </div>
+        
+        <div class="result" id="result">
+            <div class="couple-names">
+                <span id="name1-result"></span> ❤️ <span id="name2-result"></span>
+            </div>
+            <div class="percentage" id="percentage">0%</div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="message" id="message"></div>
+        </div>
+        
+        <div class="footer">
+            Made with ❤️ by LordZenoxx | For entertainment purposes only
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const calcBtn = document.getElementById('calculate-btn');
+            const resultSection = document.getElementById('result');
+            const name1Input = document.getElementById('name1');
+            const name2Input = document.getElementById('name2');
+            const name1Result = document.getElementById('name1-result');
+            const name2Result = document.getElementById('name2-result');
+            const percentageEl = document.getElementById('percentage');
+            const progressBar = document.getElementById('progress-bar');
+            const messageEl = document.getElementById('message');
+            
+            // Event Listeners
+            calcBtn.addEventListener('click', calculateLove);
+            
+            // Allow pressing Enter key
+            [name1Input, name2Input].forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') calculateLove();
+                });
+            });
+            
+            // Main Calculation Function
+            function calculateLove() {
+                const name1 = name1Input.value.trim();
+                const name2 = name2Input.value.trim();
+                
+                // Validate inputs
+                if (!name1 || !name2) {
+                    showError('Please enter both names!');
+                    return;
+                }
+                
+                if (name1.length > 30 || name2.length > 30) {
+                    showError('Names should be less than 30 characters');
+                    return;
+                }
+                
+                // Display names
+                name1Result.textContent = name1;
+                name2Result.textContent = name2;
+                
+                // Calculate percentage
+                const percentage = calculatePercentage(name1, name2);
+                
+                // Show result
+                showResult(percentage);
+            }
+            
+            // Calculate love percentage
+            function calculatePercentage(name1, name2) {
+                // Create consistent hash from names
+                const combined = (name1 + name2).toLowerCase().replace(/\s+/g, '');
+                let hash = 0;
+                
+                for (let i = 0; i < combined.length; i++) {
+                    hash = combined.charCodeAt(i) + ((hash << 5) - hash);
+                }
+                
+                // Generate percentage (biased toward higher values for fun)
+                let percentage = Math.abs(hash) % 101;
+                
+                // Apply some "magic" to make higher percentages more likely
+                percentage = Math.min(100, Math.floor(percentage * 1.35));
+                
+                // Ensure minimum of 10% for real names
+                if (name1.length > 1 && name2.length > 1) {
+                    percentage = Math.max(10, percentage);
+                }
+                
+                return percentage;
+            }
+            
+            // Animate and display result
+            function showResult(finalPercentage) {
+                // Show result section
+                resultSection.style.display = 'block';
+                
+                // Scroll to result
+                setTimeout(() => {
+                    resultSection.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+                
+                // Animate percentage counter
+                let current = 0;
+                const increment = finalPercentage / 40;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= finalPercentage) {
+                        current = finalPercentage;
+                        clearInterval(timer);
+                        setMessage(finalPercentage);
+                    }
+                    
+                    percentageEl.textContent = Math.floor(current) + '%';
+                    progressBar.style.width = current + '%';
+                }, 30);
+            }
+            
+            // Set appropriate message
+            function setMessage(percentage) {
+                let message;
+                
+                if (percentage < 20) {
+                    message = "Not a match made in heaven...";
+                } else if (percentage < 40) {
+                    message = "There might be something there!";
+                } else if (percentage < 60) {
+                    message = "Good potential for a relationship!";
+                } else if (percentage < 80) {
+                    message = "Great chemistry between you two!";
+                } else if (percentage < 90) {
+                    message = "An amazing match! True love!";
+                } else {
+                    message = "Soulmates! Perfect match! ❤️";
+                }
+                
+                messageEl.textContent = message;
+            }
+            
+            // Show error message
+            function showError(msg) {
+                alert(msg);
+            }
+        });
+    </script>
+</body>
+</html>
