@@ -2,7 +2,7 @@
 
 A beautiful, responsive love compatibility calculator with smooth animations.
 
-![Preview](assets/preview.png)
+![Preview](https://i.ibb.co/RpLCw6tr/Img2url-bot.jpg)
 
 ## Features
 - Accurate love percentage calculation
