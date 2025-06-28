@@ -1,4 +1,4 @@
-# Ultimate Love Calculator ❤️
+# Love Calculator ❤️
 
 A beautiful, responsive love compatibility calculator with smooth animations.
 
@@ -20,4 +20,4 @@ A beautiful, responsive love compatibility calculator with smooth animations.
 ## Installation
 Just clone and open `index.html` in any browser:
 ```bash
-git clone https://github.com/yourusername/ultimate-love-calculator.git
+git clone https://github.com/zenox911/love-calculator.git
